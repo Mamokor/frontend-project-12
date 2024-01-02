@@ -1,21 +1,14 @@
-import { combineReducers } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+import channelsReducer from './channelsSlice';
+import messagesReducer from './messagesSlice';
+import modalSlice from './modalSlice';
 
-import channelsInfo, { actions as channelsInfoActions } from './channelsInfo.js';
-import messagesInfo, { actions as messagesInfoActions } from './messagesInfo.js';
-import modalInfo, { actions as modalInfoActions } from './modalInfo.js';
-
-const actions = {
-  ...channelsInfoActions,
-  ...messagesInfoActions,
-  ...modalInfoActions,
-};
-
-export {
-  actions,
-};
-
-export default combineReducers({
-  channelsInfo,
-  messagesInfo,
-  modalInfo,
+const store = configureStore({
+  reducer: {
+    channelsInfo: channelsReducer,
+    messagesInfo: messagesReducer,
+    modal: modalSlice,
+  },
 });
+
+export default store;
